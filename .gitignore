@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿.env
 *.log
 node_modules/
 venv/
 __pycache__/
+=======
+# Project exclude paths
+/target/
+>>>>>>> upstream/main

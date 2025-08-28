@@ -1,12 +1,16 @@
 package com.library.management.config;
 import org.springframework.context.annotation.Configuration;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
+=======
+>>>>>>> upstream/main
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+<<<<<<< HEAD
 
     @Value("${file.upload-dir:uploads}")
     private String uploadBaseDir;
@@ -18,5 +22,11 @@ public class WebConfig implements WebMvcConfigurer {
         // directory is used.
         registry.addResourceHandler("/files/**")
                 .addResourceLocations("file:" + uploadBaseDir + "/");
+=======
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/files/**")
+                .addResourceLocations("file:uploads/");
+>>>>>>> upstream/main
     }
 }

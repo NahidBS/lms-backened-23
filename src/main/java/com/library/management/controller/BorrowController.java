@@ -151,8 +151,17 @@ public class BorrowController {
     })
     public ResponseEntity<BorrowResponse> extendDueDate(
             @Parameter(description = "User ID") @RequestParam Long userId,
+<<<<<<< HEAD
             @Parameter(description = "Book ID") @RequestParam Long bookId) {
         BorrowResponse response = borrowService.extendDueDate(userId, bookId);
+=======
+            @Parameter(description = "Book ID") @RequestParam Long bookId,
+            @Parameter(description = "Extension days") @RequestParam(required = false) Integer extendDays){
+
+        // If extendDays is null, use the default (7 days)
+        extendDays = (extendDays != null) ? extendDays : 7;
+        BorrowResponse response = borrowService.extendDueDate(userId, bookId, extendDays);
+>>>>>>> upstream/main
         return ResponseEntity.ok(response);
     }
 

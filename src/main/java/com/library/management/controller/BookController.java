@@ -13,12 +13,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Validator;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import java.util.Set;
+=======
+>>>>>>> upstream/main
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -28,8 +31,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+=======
+>>>>>>> upstream/main
 
 @RestController
 @RequestMapping("/api/book")
@@ -38,6 +44,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class BookController {
 
     private final BookService bookService;
+<<<<<<< HEAD
     private final ObjectMapper objectMapper;
     private final Validator validator;
 
@@ -49,6 +56,8 @@ public class BookController {
      */
     @Value("${file.upload-dir:uploads}")
     private String uploadBaseDir;
+=======
+>>>>>>> upstream/main
 
     @PostMapping("/create/with-links")
     @PreAuthorize("hasRole('ADMIN')")
@@ -76,6 +85,7 @@ public class BookController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+<<<<<<< HEAD
     /**
      * Create a new book using a JSON payload. This endpoint is retained for
      * backwards compatibility and accepts a standard JSON request body. When
@@ -88,6 +98,11 @@ public class BookController {
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Add a new book (JSON)", description = "Adds a new book to the library using a JSON body (Admin only)")
+=======
+    @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Add a new book", description = "Adds a new book to the library (Admin only)")
+>>>>>>> upstream/main
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Book created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid input data"),
@@ -95,6 +110,7 @@ public class BookController {
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "409", description = "Book with ISBN already exists")
     })
+<<<<<<< HEAD
     public ResponseEntity<BookResponse> createBookJson(
             @Valid @RequestBody BookCreateRequest request) {
         // Default available copies to total copies when omitted to ensure logical consistency
@@ -240,6 +256,10 @@ public class BookController {
         }
 
         // Delegate creation to service layer
+=======
+    public ResponseEntity<BookResponse> createBook(
+            @Valid @RequestBody BookCreateRequest request) {
+>>>>>>> upstream/main
         BookResponse response = bookService.createBook(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

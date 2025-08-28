@@ -13,8 +13,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+<<<<<<< HEAD
 import com.library.management.security.TokenBlacklistService;
 
+=======
+>>>>>>> upstream/main
 import java.io.IOException;
 
 @Component
@@ -24,6 +27,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
+<<<<<<< HEAD
     /**
      * Service maintaining a blacklist of JWTs that have been invalidated
      * via the logout API. If a token is on this blacklist it will not be
@@ -31,6 +35,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      */
     private final TokenBlacklistService tokenBlacklistService;
 
+=======
+>>>>>>> upstream/main
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -56,6 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+<<<<<<< HEAD
             // Before authenticating, ensure the token was not explicitly invalidated via logout
             if (jwtToken != null && tokenBlacklistService.isBlacklisted(jwtToken)) {
                 // Token has been blacklisted; do not authenticate
@@ -73,6 +80,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     // Spring Security Configurations successfully.
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
+=======
+
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
+            // if token is valid configure Spring Security to manually set authentication
+            if (jwtUtil.validateToken(jwtToken, userDetails)) {
+
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                usernamePasswordAuthenticationToken
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                // After setting the Authentication in the context, we specify
+                // that the current user is authenticated. So it passes the
+                // Spring Security Configurations successfully.
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+>>>>>>> upstream/main
             }
         }
         chain.doFilter(request, response);

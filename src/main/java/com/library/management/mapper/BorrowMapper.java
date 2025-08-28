@@ -26,10 +26,30 @@ public class BorrowMapper {
         if (request == null) {
             return null;
         }
+<<<<<<< HEAD
         
         LocalDate borrowDate = LocalDate.now();
         LocalDate dueDate = borrowDate.plusDays(14); // Default 14 days borrowing period
         
+=======
+
+        // Step 1: Get the current date (borrow date)
+        LocalDate borrowDate = LocalDate.now();
+        // Step 2: Validate and set borrow days from the request
+        int borrowDays;
+        if(request.getBorrowDays() == null){
+            borrowDays = 14;
+        } else if (request.getBorrowDays() <= 0) {
+            throw new IllegalArgumentException("Borrow days must be greater than zero.");
+        }else {
+            borrowDays = request.getBorrowDays();
+        }
+
+        // Step 3: Calculate the due date
+        LocalDate dueDate = borrowDate.plusDays(borrowDays);
+
+        // Step 4: Create and return the Borrow entity
+>>>>>>> upstream/main
         return Borrow.builder()
                 .user(user)
                 .book(book)
@@ -44,7 +64,11 @@ public class BorrowMapper {
         if (borrow == null) {
             return null;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> upstream/main
         return BorrowResponse.builder()
                 .id(borrow.getId())
                 .user(userMapper.toResponseWithoutBorrowStats(borrow.getUser()))

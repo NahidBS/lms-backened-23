@@ -5,7 +5,10 @@ import com.library.management.dto.request.RegisterRequest;
 import com.library.management.dto.response.AuthResponse;
 import com.library.management.entity.UserRole;
 import com.library.management.service.AuthService;
+<<<<<<< HEAD
 import com.library.management.security.TokenBlacklistService;
+=======
+>>>>>>> upstream/main
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -19,10 +22,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+=======
+>>>>>>> upstream/main
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -30,6 +36,7 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
+<<<<<<< HEAD
     private final TokenBlacklistService tokenBlacklistService;
 
     /**
@@ -64,6 +71,8 @@ public class AuthController {
         response.put("message", "Logged out successfully");
         return ResponseEntity.ok(response);
     }
+=======
+>>>>>>> upstream/main
 
     @PostMapping("/register")
     @Operation(

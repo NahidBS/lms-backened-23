@@ -60,9 +60,14 @@ public class BookCreateRequest {
     @JsonProperty("publication_year")
     private Integer publicationYear;
 
+<<<<<<< HEAD
     // The book cover URL is set internally after file upload; it should not be provided by clients.
     @Schema(hidden = true)
     @com.fasterxml.jackson.annotation.JsonIgnore
+=======
+    @Schema(description = "URL for book cover image", example = "https://example.com/covers/great-gatsby.jpg")
+    @JsonProperty("book_cover_url")
+>>>>>>> upstream/main
     private String bookCoverUrl;
 
     @Schema(description = "URL for PDF version of the book", example = "https://example.com/pdfs/great-gatsby.pdf")
